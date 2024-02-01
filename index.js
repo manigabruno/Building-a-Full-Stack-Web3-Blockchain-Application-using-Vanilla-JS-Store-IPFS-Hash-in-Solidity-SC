@@ -36,6 +36,12 @@ app.post("/uploadData", async (req, res) => {
         })
     }
     async function uploaddatatoIPFS() {
-        const token = ""
+        const token = "z6Mkp2zwq6s4rBYatnxp8rgb4NCs8Ey6TPKme8SYjDZoYzrL"
+        const storage = new Web3Storage({token: token});
+        const files = await getFilesFromPath(__dirname + `/${filename}`)
+        console.log("Uploading files to IPFS, please wait !!")
+        const cid = await storage.put(files);
+        console.log(`IPFS CID: ${cid}`);
+        return(cid)
     }
 })
